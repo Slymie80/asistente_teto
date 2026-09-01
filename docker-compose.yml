@@ -1,0 +1,18 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend/app/models:/app/app/models
+    environment:
+      RVC_API_URL: http://rvc-service:5050
+    depends_on:
+      - rvc-service
+
+  rvc-service:
+    build: ./rvc-service
+    ports:
+      - "5050:5050"
+    volumes:
+      - ./rvc-service/rvc_models:/app/rvc_models

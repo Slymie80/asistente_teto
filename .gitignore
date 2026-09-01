@@ -1,11 +1,7 @@
-﻿# Entornos virtuales
-venv/
+﻿venv/
 __pycache__/
 *.pyc
-
-# Modelos pesados (no van en git)
-app/models/
-
-# Archivos de prueba
+backend/app/models/
+rvc-service/rvc_models/
 *.wav
 .env

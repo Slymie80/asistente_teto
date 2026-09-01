@@ -33,6 +33,15 @@ def interpretar_comando_endpoint(comando: ComandoRequest):
 
 @app.post("/comando/audio")
 def interpretar_comando_audio(request:ComandoRequest):
+    """
+    Interpretar un comando de voz y devolver el audio sintetizado.
+
+    Args:
+        request (ComandoRequest): El comando de texto a interpretar.
+
+    Returns:
+        Response: La respuesta con el audio sintetizado.
+    """
     resultado = interpretar_comando(request.texto)
     audio_bytes = sintetizar_texto(resultado["respuesta_texto"])
     return Response(content=audio_bytes,media_type="audio/wav")
