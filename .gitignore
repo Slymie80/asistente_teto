@@ -1,0 +1,11 @@
+﻿# Entornos virtuales
+venv/
+__pycache__/
+*.pyc
+
+# Modelos pesados (no van en git)
+app/models/
+
+# Archivos de prueba
+*.wav
+.env
