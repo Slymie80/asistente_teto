@@ -6,7 +6,7 @@ class LLMClient:
     def __init__(self):
         self.api_url = os.getenv(
             "OLLAMA_API_URL",
-            "http://ollama:1143"
+            "http://ollama:11434"
             )
         
         self.model = os.getenv(

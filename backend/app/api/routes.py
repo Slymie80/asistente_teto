@@ -3,11 +3,13 @@
 
 from fastapi import FastAPI, APIRouter
 from fastapi.responses import Response
-from app.nlu.intent_parser import interpretar_comando
+from app.nlu.intent_parser import IntentParser
 from app.api.schemas import ComandoRequest, ComandoResponse
 from app.tts.sintetizador import sintetizar_texto
 
 router = APIRouter()
+
+intent_parser = IntentParser()
     
 @router.get("/health")
 def health_check():
@@ -28,7 +30,7 @@ def interpretar_comando_endpoint(comando: ComandoRequest):
     Returns:
         ComandoResponse: La respuesta con la intención, acción, parámetros y respuesta de texto.
     """
-    resultado = interpretar_comando(comando.texto)
+    resultado = intent_parser.interpretar(comando.texto)
     return ComandoResponse(**resultado)
 
 @router.post("/comando/audio")
