@@ -11,13 +11,32 @@ class IntentParser:
 
         if not texto:
             return self._response_desconocida()
+        try:
+            resultado = self._interpretar_con_llm(texto)
+        except Exception:
+            return self._response_desconocida()
 
-        resultado = self.llm.interpretar_por_llm(texto)
+        if not isinstance(resultado, dict):
+            return self._response_desconocida()
 
-        if resultado.get("accion") not in ACCIONES_PERMITIDAS:
-            return self._response_desconocida() 
+        intencion = resultado.get("intencion")
+        accion = resultado.get("accion")
+        parametros = resultado.get("parametros")
 
-        return resultado
+        if not isinstance(intencion, str) or not isinstance(accion, str) or not isinstance(parametros, dict):
+            return self._response_desconocida()
+
+        if accion not in ACCIONES_PERMITIDAS:
+            return self._response_desconocida()
+
+        if not isinstance(parametros, dict):
+            return self._response_desconocida()
+
+        return {
+            "intencion": intencion,
+            "accion": accion,
+            "parametros": parametros,
+            }
 
     def _response_desconocida(self):
         return {
