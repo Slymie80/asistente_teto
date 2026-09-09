@@ -1,3 +1,4 @@
+from app.nlu.intents import ACCIONES_PERMITIDAS
 
 def interpretar_comando(texto:str) -> dict:
     """
@@ -14,16 +15,17 @@ def interpretar_comando(texto:str) -> dict:
             "parametros": {},
         }
 
-    # luego se implementara llamada al llm
-
-    return {
+    resultado = {
         "intencion":"desconocida",
         "accion":"ninguna",
-        "parametros": {
-            "texto_original": texto
-        },
+        "parametros": {},
     }
-    
+
+    if resultado["accion"] not in ACCIONES_PERMITIDAS:
+        resultado["accion"] = "ninguna"
+
+    return resultado
+
     
 
 
