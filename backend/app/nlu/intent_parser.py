@@ -1,5 +1,5 @@
 from app.nlu.intents import ACCIONES_PERMITIDAS
-
+from app.nlu.llm_client import LLMClient
 def interpretar_comando(texto:str) -> dict:
     """
     convierte un comando de texto en una intención, acción, parámetros y respuesta de texto. 
