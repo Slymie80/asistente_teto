@@ -1,3 +1,6 @@
+
+
+
 from fastapi import FastAPI, APIRouter
 from fastapi.responses import Response
 from app.nlu.intent_parser import interpretar_comando
