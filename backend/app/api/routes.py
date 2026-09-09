@@ -1,11 +1,11 @@
 from fastapi import APIRouter
-
+from app.commands.executor import CommandExecutor
 from app.api.schemas import ComandoRequest, ComandoResponse
 from app.nlu.intent_parser import IntentParser
 
 
 router = APIRouter()
-
+command_executor = CommandExecutor()
 intent_parser = IntentParser()
 
 
@@ -24,8 +24,14 @@ def root():
     }
 
 
-@router.post("/comando", response_model=ComandoResponse)
-def interpretar_comando_endpoint(comando: ComandoRequest):
-    resultado = intent_parser.interpretar(comando.texto)
 
-    return ComandoResponse(**resultado)
+@router.post("/comando")
+def interpretar_comando_endpoint(comando: ComandoRequest):
+    comando_interpretado = intent_parser.interpretar(comando.texto)
+
+    resultado = command_executor.ejecutar(comando_interpretado)
+
+    return {
+        "comando": comando_interpretado,
+        "resultado": resultado,
+    }

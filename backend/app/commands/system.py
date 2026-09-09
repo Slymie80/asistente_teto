@@ -1,4 +1,4 @@
-from datatime import datetime
+from datetime import datetime
 
 class SystemCommands:
     def consultar_hora(self) -> dict:
