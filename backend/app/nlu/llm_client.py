@@ -15,7 +15,7 @@ class LLMClient:
         )
         self.timeout = 60
 
-    def interpretar_por_llm (self,texto: str) -> dict:
+    def interpretar_con_llm (self,texto: str) -> dict:
 
         prompt = self._crear_prompt(texto)
 

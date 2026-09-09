@@ -13,7 +13,7 @@ class IntentParser:
             return self._response_desconocida()
         
         try:
-            resultado = self.llm._interpretar_con_llm(texto)
+            resultado = self.llm.interpretar_con_llm(texto)
         except Exception as e:
             print(f"Error al interpretar el comando: {e}")
             return self._response_desconocida()
