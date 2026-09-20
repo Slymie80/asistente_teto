@@ -40,8 +40,4 @@ class CommandExecutor:
                 },
             }
 
-        if handler == "responder":
-            mensaje = parametros.get("mensaje","")
-            return handler(mensaje)
-
         return handler(**parametros)
