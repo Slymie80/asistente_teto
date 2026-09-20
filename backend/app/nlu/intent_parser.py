@@ -30,9 +30,9 @@ class IntentParser:
 
         if accion not in ACCIONES_PERMITIDAS:
             return self._response_desconocida()
-
-        if not isinstance(parametros, dict):
-            return self._response_desconocida()
+        
+        if accion == "responder" and "mensaje" not in parametros:
+            parametros["mensaje"] = texto
 
         return {
             "intencion": intencion,

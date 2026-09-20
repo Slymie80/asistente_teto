@@ -1,13 +1,16 @@
 from app.commands.system import SystemCommands
-
+from app.conversation.service import ConversationService
 
 class CommandExecutor:
     def __init__(self):
         self.system = SystemCommands()
+
+        self.conversation = ConversationService()
         
         # definir un diccionario de acciones permitidas y sus correspondientes métodos
         self._handlers = {
             "consultar_hora": self.system.consultar_hora,
+            "responder":self.conversation.responder,
         }
 
     def ejecutar(self, comando: dict) -> dict:
@@ -36,5 +39,9 @@ class CommandExecutor:
                     "parametros": parametros,
                 },
             }
+
+        if handler == "responder":
+            mensaje = parametros.get("mensaje","")
+            return handler(mensaje)
 
         return handler(**parametros)
