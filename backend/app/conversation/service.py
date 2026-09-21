@@ -5,7 +5,7 @@ class ConversationService:
     def __init__(
         self,
         base_url: str = "http://ollama:11434",
-        model: str = "gemma3:4b",
+        model: str = "gemma3:1b",
     ):
         self.base_url = base_url
         self.model = model
@@ -54,9 +54,11 @@ Teto:
                 "datos": {},
             }
 
-        except requests.RequestException:
+        except requests.RequestException as e:
+            print(f"Error en ConversationService: {e}")
+
             return {
-                "exito": False,
-                "respuesta_texto": "No pude conectarme con el modelo de lenguaje.",
-                "datos": {},
-            }
+                    "exito": False,
+                    "respuesta_texto": "No pude conectarme con el modelo de lenguaje.",
+                    "datos": {},
+                    }

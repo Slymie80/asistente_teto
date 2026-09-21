@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from app.commands.executor import CommandExecutor
-from app.api.schemas import ComandoRequest, ComandoResponse
+from app.api.schemas import ComandoRequest
 from app.nlu.intent_parser import IntentParser
 
 
