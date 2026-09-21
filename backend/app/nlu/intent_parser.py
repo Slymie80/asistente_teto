@@ -14,7 +14,7 @@ class IntentParser:
         
         try:
             resultado = self.llm.interpretar_con_llm(texto)
-            print("RESULTADO DEL LLM:", resultado)
+
         except Exception as e:
             print(f"Error al interpretar el comando: {e}")
             return self._response_desconocida()
@@ -28,12 +28,6 @@ class IntentParser:
             accion = resultado.get("acción")
         parametros = resultado.get("parametros",{})
 
-        print("INTENCION:", repr(intencion), type(intencion))
-        print("ACCION:", repr(accion), type(accion))
-        print("PARAMETROS:", repr(parametros), type(parametros))
-        print("ACCIONES PERMITIDAS:", ACCIONES_PERMITIDAS)
-        print("ACCION PERMITIDA:", accion in ACCIONES_PERMITIDAS)
-
         if not isinstance(intencion, str) or not isinstance(accion, str) or not isinstance(parametros, dict):
             return self._response_desconocida()
 
@@ -45,11 +39,6 @@ class IntentParser:
                         "mensaje": texto
             }
 
-        print("COMANDO FINAL:", {
-    "intencion": intencion,
-    "accion": accion,
-    "parametros": parametros,
-     })
         return {
             "intencion": intencion,
             "accion": accion,

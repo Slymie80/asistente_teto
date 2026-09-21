@@ -35,3 +35,5 @@ def interpretar_comando_endpoint(comando: ComandoRequest):
         "comando": comando_interpretado,
         "resultado": resultado,
     }
+
+
