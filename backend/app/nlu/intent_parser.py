@@ -39,6 +39,7 @@ class IntentParser:
                         "mensaje": texto
             }
 
+
         return {
             "intencion": intencion,
             "accion": accion,

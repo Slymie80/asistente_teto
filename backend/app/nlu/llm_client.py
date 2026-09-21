@@ -23,7 +23,10 @@ class LLMClient:
             "model": self.model,
             "prompt":prompt,
             "stream": False,
-            "format": "json"
+            "format": "json",
+            "options": {
+                "temperature" : 0
+            }
         }
 
         response = requests.post(
